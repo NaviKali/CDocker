@@ -1,0 +1,12 @@
+{
+  "PROJECT_NAME":"CDocker",
+  "PROJECT_VERSION":"2.0",
+  "ROOT": "",
+  "UPLOADURL": "",
+  "COOKIE": {
+    "UUID": {
+      "NAME": "UUID",
+      "TIME": 100000
+    }
+  }
+}

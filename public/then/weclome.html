@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tank-操作MongoDB数据库</title>
+        <style>
+                * {
+                        margin: 0;
+                        padding: 0;
+                }
+
+                body {
+                        background-color: black;
+                        width: 100vw;
+                        overflow: hidden;
+                        padding-top: 10px;
+                        user-select: none;
+
+                }
+
+                ::-webkit-scrollbar {
+                        width: 5px;
+                        background-color: black;
+                }
+
+                ::-webkit-scrollbar-thumb {
+                        border-radius: 10px;
+                        background-color: skyblue;
+                }
+
+                .title {
+                        width: 80%;
+                        margin: 20px auto;
+                }
+
+                .title h1,
+                h3 {
+                        text-align: center;
+                        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+                        letter-spacing: 8px;
+                        -webkit-text-stroke: 1px white;
+                }
+
+                .title h3 {
+                        padding-top: 20px;
+                }
+
+                .BLOCK {
+                        transition: all 0.4s;
+                        width: 30px;
+                        height: 30px;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        border-radius: 5px;
+                        transform: rotate(45deg);
+                        z-index: -1;
+                        border: 2px solid white;
+                        opacity: 0;
+                        transition: all 0.6s;
+                }
+
+                .BLOCK:hover {
+                        border: 2px solid deepskyblue;
+                        background-color: white;
+                }
+        </style>
+</head>
+
+<body id="body">
+        <div class="title">
+                <h1>欢迎使用Tank框架
+                </h1>
+                <h3>基于MongoDB数据库操作的PHP框架</h3>
+        </div>
+
+
+</body>
+<script>
+        var body = document.getElementById('body')
+        function CreateBLOCK() {
+                let BLOCK = document.createElement('div')
+                BLOCK.classList = "BLOCK"
+                BLOCK.style.left = Math.floor(Math.random() * 100 + 1) + 'vw'
+                BLOCK.style.top = Math.floor(Math.random() * 100 + 1) + 'vh'
+                body.appendChild(BLOCK)
+                setTimeout(() => {
+                        BLOCK.style.transition = "all 0.8s"
+                        BLOCK.style.opacity = "1"
+                }, 100)
+                setTimeout(() => {
+                        BLOCK.style.opacity = "0"
+                        setTimeout(() => {
+                                BLOCK.remove()
+                        }, 1000)
+                }, 3000)
+        }
+        setInterval(() => {
+                CreateBLOCK();
+                CreateBLOCK();
+                CreateBLOCK();
+                CreateBLOCK();
+                CreateBLOCK();
+                CreateBLOCK();
+                CreateBLOCK();
+                CreateBLOCK();
+                CreateBLOCK();
+                CreateBLOCK();
+                CreateBLOCK();
+                CreateBLOCK();
+                CreateBLOCK();
+                CreateBLOCK();
+                CreateBLOCK();
+        }, 3500)
+</script>
+
+</html>

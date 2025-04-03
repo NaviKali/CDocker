@@ -1,0 +1,17 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+use tank\vic;
+
+$cwd = getcwd();
+(new vic($argv[1]))->resetServiceArr([
+    "service"=>"php -S localhost:8080",
+    "apache"=>"Start ," . $cwd . "\\.bat\\.StartApache.bat",
+    "nginx"=>"Start ," . $cwd . "\\.bat\\.StartNginx.bat",
+    "server"=>"php .exec/exec.php",
+    "document"=>"Start ," . $cwd . "\\.bat\\.StartDocument.bat",
+    "pack"=>"tar -cf pack.gz ./.conf ./.mongodb ./.bat ./.do ./.exec ./app ./config ./constant ./document ./env ./logs ./proxy ./public ./views ./必看.md ./docker-compose.yml ./app.json ./composer.json ./composer.lock ./init.php",
+    "redis"=>"Start ," . $cwd . "\\.bat\\.StartRedis.bat",
+])->run();

@@ -1,0 +1,43 @@
+.T-first {
+  font-size: 35px;
+  font-style: italic;
+  letter-spacing: 15px;
+  padding-bottom: 20px;
+}
+.T-content{
+  font-size: 18px;
+  font-weight: bold;
+  user-select: none;
+  letter-spacing: 1px;
+}
+.T-Card{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.T-textarea{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.T-error{
+  border: 2px solid rgb(255, 194, 194);
+  padding: 20px;
+  border-radius: 6px;
+  color: red;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  user-select: none;
+  letter-spacing: 1px;
+}
+.T-main{
+  border: 2px solid rgb(165, 225, 248);
+  padding: 20px;
+  border-radius: 6px;
+  color: rgb(54, 194, 250);
+  margin-bottom: 20px;
+  margin-top: 20px;
+  user-select: none;
+  letter-spacing: 1px;
+}
+a{
+  color: red;
+}

@@ -1,0 +1,37 @@
+version: '1.2'
+services:
+  nginx:
+    container_name: nginx
+    build: .
+    image: nginx:latest
+    ports:
+      - "3143:80"
+    links:
+      - php
+      - mongo
+    volumes:
+      - ./.conf/conf.d/:/etc/nginx/conf.d
+  mongo:
+    build: .
+    container_name: mongodb
+    image: mongo
+    restart: always
+    ports:
+      - 27018:27017
+    volumes:
+      - ./.mongodb/config/mongod.conf:/etc/mongod.conf
+      - ./.mongodb/data:/data/db
+      - ./.mongodb/logs:/var/log/mongodb
+      # environment:
+      # - MONGO_INITDB_ROOT_USERNAME=admin
+      # - MONGO_INITDB_ROOT_PASSWORD=123456
+  php:
+    container_name: php
+    build: .
+    image: tank-form-php:8.0.2-fpm
+    volumes:
+      - .:/var/www/
+    depends_on:
+      - mongo
+    environment:
+      MONGO_LOCALHOST: mongo

@@ -1,0 +1,16 @@
+{
+  "version": "4",
+  "name":"tankphp/tank",
+  "description":"这是一个使用PHP操作MongoDB数据库的框架",
+  "require": {
+  },
+  "autoload": {
+    "psr-4": {
+      "app\\": "app",
+      "public\\": "public",
+      "config\\": "config",
+      "router\\": "router",
+      "tank\\": "tank"
+    }
+  }
+}

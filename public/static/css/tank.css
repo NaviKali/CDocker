@@ -1,0 +1,14 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    transition-duration: none;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    user-select: none;
+}
+a{
+    text-decoration: unset;
+    color: black;
+}
