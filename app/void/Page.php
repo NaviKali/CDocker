@@ -45,4 +45,15 @@ class Page
             "title" => getAPPJSON()->PROJECT_NAME . "|首页",
         ]);
     }
+    /**
+     * 镜像列表页
+     */
+    public function imageList():void{
+        View::Start((new Logicmenu)->default["镜像"]["children"]["镜像列表"]["to"],[
+            "menus" => (new Logicmenu)->default,
+            "imagesData"=>(new Logicdocker(Logicdocker::ACTION_GETIMAGESLIST))->data,
+        ],[
+            "title" => getAPPJSON()->PROJECT_NAME . "|镜像列表",
+        ]);
+    }
 }

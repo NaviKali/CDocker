@@ -19,13 +19,11 @@ class Command extends BaseController
      */
     public function builder(Request $request): void
     {
-
         $params = $this->app->getAppParams();
 
         Success("命令成功！", [
             "return" => is_string(Logiccommand::start($params["command"])) ? str_replace("\n", "<br>", Logiccommand::start($params["command"])) : "ok"
         ]);
-
     }
 
 }

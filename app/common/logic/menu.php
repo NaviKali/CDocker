@@ -22,7 +22,7 @@ class menu
             "children"=>[
                 "容器列表"=>[
                     "name"=>"containerList",
-                    "to"=>"./container/List"
+                    "to"=>"container/List"
                 ],
             ],
         ],
@@ -31,7 +31,7 @@ class menu
             "children"=>[
                 "镜像列表"=>[
                     "name"=>"imageList",
-                    "to"=>"./"
+                    "to"=>"image/List"
                 ],
             ],
         ],

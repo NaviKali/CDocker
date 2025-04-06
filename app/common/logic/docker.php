@@ -12,6 +12,7 @@ class docker
     const ACTION_GETIMAGESLIST = "getImagesList";
     const ACTION_CLOSECONTAINER = "closeContainer";
     const ACTION_RESTARTCONTAINER = "restartContainer";
+    const ACTION_DELETEIMAGE = "deleteImage";
     /**
      * 系统类型
      * 
@@ -37,6 +38,7 @@ class docker
         "action" => [
             self::ACTION_CLOSECONTAINER,
             self::ACTION_RESTARTCONTAINER,
+            self::ACTION_DELETEIMAGE,
         ]
     ];
     /**
@@ -61,7 +63,8 @@ class docker
         self::ACTION_GETCONTAINERALLLIST => "docker ps -a",
         self::ACTION_GETIMAGESLIST => "docker images",
         self::ACTION_CLOSECONTAINER => "docker stop\t",
-        self::ACTION_RESTARTCONTAINER => "docker restart\t"
+        self::ACTION_RESTARTCONTAINER => "docker restart\t",
+        self::ACTION_DELETEIMAGE => "docker rmi\t",
     ];
     /**
      * 获取数据
@@ -106,8 +109,8 @@ class docker
         $command = preg_replace('/About a+/', "About\tA", $command);
         $command = preg_replace('/Up Less +/', "Up\tLess", $command);
         $command = preg_replace('/Up About +/', "Up\tAbout", $command);
-        $command = preg_replace('/nginx -g +/',"nginx\t-g\t",$command);
-        $command = preg_replace('/daemon of+/',"daemon\tof",$command);
+        $command = preg_replace('/nginx -g +/', "nginx\t-g\t", $command);
+        $command = preg_replace('/daemon of+/', "daemon\tof", $command);
 
 
 
@@ -143,7 +146,7 @@ class docker
                         // $command[$i][2] = $command[$i][2] . PHP_EOL . $command[$i][3] . PHP_EOL . $command[$i][4] . PHP_EOL . $command[$i][5];
                         $command[$i][3] = $command[$i][3] . PHP_EOL . $command[$i][4] . PHP_EOL . $command[$i][5];
                         $command[$i][6] = $command[$i][6] . PHP_EOL . $command[$i][7] . PHP_EOL . $command[$i][8];
-                        unset($command[$i][4], $command[$i][5], $command[$i][7],$command[$i][8]);
+                        unset($command[$i][4], $command[$i][5], $command[$i][7], $command[$i][8]);
                         usort($command[$i], function (): void{});
                     }
 
@@ -209,16 +212,26 @@ class docker
         foreach ($data as $k => $v) {
             $number = 0;
             for ($i = 1; $i < sizeof($containerList); $i++) {
-                if($containerList[$i][1] == $v){
+                if ($containerList[$i][1] == $v) {
                     $number++;
                 }
             }
             $count[] = $number;
         }
 
-
-
-        return ["type"=>$data,"count"=>$count];
+        return ["type" => $data, "count" => $count];
+    }
+    /**
+     * 删除镜像
+     * 
+     * @access public
+     * @param string|array $image 镜像
+     * @return bool|string|null
+     */
+    public function deleteImage(string|array $image): bool|string|null
+    {
+        $image = is_array($image) ? join("\t", $image) : $image;
+        return Logiccommand::start($this->action[self::ACTION_DELETEIMAGE] . $image);
     }
 
 }

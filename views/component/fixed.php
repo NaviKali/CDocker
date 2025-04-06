@@ -55,35 +55,42 @@
 
     function handleCommandKeyDown(event) {
         if (event.keyCode == 13) {
-            $.ajax({
-                method: "POST",
-                url: "$(echo t-get("REQUEST_URL"))$Command/builder",
-                data: JSON.stringify({
-                    command: btoa(commandInput.value)
-                }),
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                dataType: "json",
-                success: function (successData) {
-                    AlertStart(ALERT_ANIMATION_TOP_MOVE, 200, function () {
-                        if (isRequestSuccess(successData)) {
-                            commandInput.value = "";
-                            changeAlertType("alert-success")
-                            alertId.innerHTML = successData.msg;
-                            commandData += successData.data.return + "<br>";
-                            localStorage.setItem("commandData", commandData)
-                            commandBody.innerHTML += successData.data.return + "<br>"
-                            setTimeout(() => {
-                                commandModalBody.scrollTo(0, commandModalBody.scrollHeight);
-                            }, 100);
-                        } else {
-                            changeAlertType("alert-danger")
-                            alertId.innerHTML = successData.msg;
-                        }
-                    })
-                }
-            })
+            // 清空数据
+            if (commandInput.value == COMMAND_CLEAR) {
+                localStorage.setItem("commandData", "")
+                commandBody.innerHTML = "";
+                commandInput.value = "";
+            } else {
+                $.ajax({
+                    method: "POST",
+                    url: "$(echo t-get("REQUEST_URL"))$Command/builder",
+                    data: JSON.stringify({
+                        command: btoa(commandInput.value)
+                    }),
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    dataType: "json",
+                    success: function (successData) {
+                        AlertStart(ALERT_ANIMATION_TOP_MOVE, 200, function () {
+                            if (isRequestSuccess(successData)) {
+                                commandInput.value = "";
+                                changeAlertType("alert-success")
+                                alertId.innerHTML = successData.msg;
+                                commandData += successData.data.return + "<br>";
+                                localStorage.setItem("commandData", commandData)
+                                commandBody.innerHTML += successData.data.return + "<br>"
+                                setTimeout(() => {
+                                    commandModalBody.scrollTo(0, commandModalBody.scrollHeight);
+                                }, 100);
+                            } else {
+                                changeAlertType("alert-danger")
+                                alertId.innerHTML = successData.msg;
+                            }
+                        })
+                    }
+                })
+            }
         } else {
             return
         }
